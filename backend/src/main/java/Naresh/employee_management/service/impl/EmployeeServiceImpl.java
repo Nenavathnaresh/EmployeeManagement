@@ -175,15 +175,15 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = getEmployeeOrThrow(id);
 //        Employee employee = findEmployeeById(id);
 
-        validateDuplicateEmail(employee,request.getEmail());
+//        validateDuplicateEmail(employee,request.getEmail());
 
-//        if (!employee.getEmail().equals(request.getEmail())
-//                && employeeRepository.existsByEmail(request.getEmail())) {
-//
-//            throw new DuplicateEmailException(
-//                    "Employee already exists with email : "
-//                            + request.getEmail());
-//        }
+        if (!employee.getEmail().equals(request.getEmail())
+                && employeeRepository.existsByEmailAndDeletedFalse(request.getEmail())) {
+
+            throw new DuplicateEmailException(
+                    "Employee already exists with email : "
+                            + request.getEmail());
+        }
 
         employeeMapper.updateEntity(request, employee);
 
