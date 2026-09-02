@@ -1,0 +1,49 @@
+<!-- Mobile/Tablet Backdrop Overlay -->
+@if (sidebarService.isMobileOpen()) {
+<div class="sidebar-backdrop" (click)="sidebarService.closeMobile()"></div>
+}
+
+<aside class="sidebar-nav" [class.mobile-open]="sidebarService.isMobileOpen()">
+    <div class="sidebar-mobile-header">
+        <span class="mobile-title">MAIN MENU</span>
+        <button class="btn-icon close-mobile-btn" (click)="sidebarService.closeMobile()">✕</button>
+    </div>
+
+    <div class="nav-section">
+        <!-- <div class="section-title">MAIN MENU</div>-->
+
+        <a routerLink="/dashboard" routerLinkActive="active" class="nav-item" (click)="sidebarService.closeMobile()">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+        <a routerLink="/employees" routerLinkActive="active" class="nav-item" (click)="sidebarService.closeMobile()">
+            <span class="nav-icon">👥</span>
+            <span class="nav-text">Employees</span>
+        </a>
+    </div>
+
+    <!--<div class="nav-section">
+        <div class="section-title">ENTERPRISE SYSTEM</div>
+
+        <div class="system-status-card">
+          <div class="status-header">
+            <span class="status-title">Spring Security RBAC</span>
+          </div>
+          <div class="status-body">
+            <div class="role-badge">
+              Active: <strong>{{ authService.userRoles() || 'NONE' }}</strong>
+            </div>
+            <div class="rbac-info">
+              @if (authService.hasRole('ROLE_ADMIN')) {
+                <span>Full CRUD, Soft Delete & Hard Delete granted.</span>
+              } @else if (authService.hasRole('ROLE_MANAGER')) {
+                <span>Create, Edit & Soft Delete granted.</span>
+              } @else {
+                <span>Read-Only employee directory access.</span>
+              }
+            </div>
+          </div>
+        </div>
+      </div>-->
+</aside>

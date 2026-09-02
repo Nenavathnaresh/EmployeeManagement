@@ -1,0 +1,71 @@
+.register-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.15), transparent 60%), var(--bg-app);
+}
+
+.register-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 2.25rem;
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 1.75rem;
+}
+
+.register-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.register-subtitle {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+}
+
+.register-form {
+    margin-bottom: 1.25rem;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}
+
+.auth-switch {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.switch-link {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.switch-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .register-card {
+        padding: 1.5rem;
+    }
+}

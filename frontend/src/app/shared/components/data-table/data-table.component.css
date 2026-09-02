@@ -1,0 +1,251 @@
+  .table-container {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+  }
+
+  .table-responsive {
+      width: 100%;
+      max-height: calc(100vh - 310px);
+      min-height: 350px;
+      overflow-x: auto;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
+  }
+
+  .enterprise-table {
+      width: 100%;
+      min-width: 900px;
+      border-collapse: separate;
+      border-spacing: 0;
+      text-align: left;
+      font-size: 0.875rem;
+  }
+
+  .enterprise-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.775rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+      padding: 15px;
+  }
+
+  .enterprise-table th.sortable {
+      cursor: pointer;
+      user-select: none;
+  }
+
+  .enterprise-table th.sortable:hover {
+      color: var(--primary);
+  }
+
+  .enterprise-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+      white-space: nowrap;
+  }
+
+  .enterprise-table tbody tr {
+      transition: background-color 0.15s ease;
+  }
+
+  .enterprise-table tbody tr:hover {
+      background-color: var(--bg-surface-hover);
+  }
+
+  .row-deleted {
+      opacity: 0.65;
+      background-color: var(--danger-light);
+  }
+
+  .row-deleted td {
+      text-decoration: line-through;
+  }
+
+  .row-deleted .action-buttons button,
+  .row-deleted .audit-btn {
+      text-decoration: none !important;
+  }
+
+  .employee-name-box {
+      display: flex;
+      flex-direction: column;
+  }
+
+  .full-name {
+      font-weight: 600;
+      color: var(--text-main);
+  }
+
+  .email-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+  }
+
+  .dept-badge {
+      font-weight: 500;
+      color: var(--primary);
+  }
+
+  .action-buttons {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.4rem;
+  }
+
+  .audit-btn {
+      font-size: 0.725rem;
+  }
+
+  .font-mono {
+      font-family: monospace;
+  }
+
+  .font-600 {
+      font-weight: 600;
+  }
+
+  .text-right {
+      text-align: right;
+  }
+
+  .text-center {
+      text-align: center;
+  }
+
+  .loading-cell,
+  .empty-cell {
+      padding: 3rem 1rem;
+      text-align: center;
+      color: var(--text-muted);
+  }
+
+  .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--border-color);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 0.75rem auto;
+  }
+
+  .empty-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+  }
+
+  .empty-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-main);
+  }
+
+  .empty-subtitle {
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+  }
+
+  .pagination-bar {
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: var(--bg-surface-hover);
+  }
+
+  .pagination-summary {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+  }
+
+  .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+  }
+
+  .page-size-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+  }
+
+  .size-select {
+      width: auto;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.8rem;
+  }
+
+  .pager-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+  }
+
+  .page-indicator {
+      font-size: 0.8rem;
+      margin: 0 0.5rem;
+      color: var(--text-muted);
+  }
+
+  @keyframes spin {
+      to {
+          transform: rotate(360deg);
+      }
+  }
+
+  @media (max-width: 768px) {
+      .pagination-bar {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.85rem;
+          padding: 0.85rem 1rem;
+      }
+
+      .pagination-summary {
+          text-align: center;
+      }
+
+      .pagination-controls {
+          width: 100%;
+          justify-content: space-between;
+          gap: 0.75rem;
+      }
+  }
+
+  @media (max-width: 540px) {
+      .pagination-controls {
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+      }
+
+      .pager-buttons {
+          width: 100%;
+          justify-content: center;
+          flex-wrap: wrap;
+      }
+
+      .pager-buttons button {
+          min-height: 36px;
+          padding: 0.4rem 0.75rem;
+      }
+  }

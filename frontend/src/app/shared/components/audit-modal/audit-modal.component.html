@@ -1,0 +1,75 @@
+@if (isOpen && employee) {
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-box audit-box">
+    <div class="modal-header">
+      <div class="header-title-box">
+        <span class="audit-icon">🛡️</span>
+        <div>
+          <h3 class="modal-title">Auditing Inspector</h3>
+          <div class="modal-subtitle">
+            {{ employee.id }} — {{ employee.firstName }} {{ employee.lastName }}
+          </div>
+        </div>
+      </div>
+      <button class="btn-icon" (click)="close.emit()">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="audit-grid">
+        <!-- Created By -->
+        <div class="audit-card">
+          <div class="card-icon">👤</div>
+          <div class="card-content">
+            <div class="card-label">Created By (createdBy)</div>
+            <div class="card-value font-mono">{{ employee.createdBy || 'SYSTEM' }}</div>
+          </div>
+        </div>
+
+        <!-- Created At -->
+        <div class="audit-card">
+          <div class="card-icon">📅</div>
+          <div class="card-content">
+            <div class="card-label">Created Timestamp (createdAt)</div>
+            <div class="card-value font-mono">
+              {{ employee.createdAt | date:'medium' }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Updated By -->
+        <div class="audit-card">
+          <div class="card-icon">✍️</div>
+          <div class="card-content">
+            <div class="card-label">Last Modified By (updatedBy)</div>
+            <div class="card-value font-mono">{{ employee.updatedBy || 'SYSTEM' }}</div>
+          </div>
+        </div>
+
+        <!-- Updated At -->
+        <div class="audit-card">
+          <div class="card-icon">🕒</div>
+          <div class="card-content">
+            <div class="card-label">Last Modified Timestamp (updatedAt)</div>
+            <div class="card-value font-mono">
+              {{ employee.updatedAt | date:'medium' }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="jpa-info-banner">
+        <span class="info-icon">ℹ️</span>
+        <span>
+          These fields are automatically managed by Spring Data JPA Auditing via
+          <code>&#64;CreatedBy</code>, <code>&#64;CreatedDate</code>, <code>&#64;LastModifiedBy</code>, and
+          <code>&#64;LastModifiedDate</code>.
+        </span>
+      </div> -->
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="close.emit()">Close</button>
+    </div>
+  </div>
+</div>
+}

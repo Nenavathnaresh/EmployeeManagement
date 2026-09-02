@@ -1,0 +1,35 @@
+<div class="employee-management-page">
+    <div class="page-header">
+        <div class="header-text">
+            <h1 class="page-title">Employee Directory</h1>
+            <!-- <p class="page-subtitle">Server Pagination, JPQL Specification Search & JPA Auditing</p> -->
+        </div>
+
+        <button *appHasRole="['ADMIN', 'MANAGER']" class="btn btn-primary create-btn" (click)="openCreateModal()">
+            ➕ Add Employee
+        </button>
+    </div>
+
+    <!-- Filter & Search Bar -->
+    <app-search-bar [initialParams]="queryParams" (filterChange)="onFilterChange($event)"></app-search-bar>
+
+    <!-- Paginated Data Table -->
+    <app-data-table [pageData]="pageData" [loading]="loading" [sortBy]="queryParams.sortBy"
+        [direction]="queryParams.direction" (sortChange)="onSortChange($event)" (pageChange)="onPageChange($event)"
+        (pageSizeChange)="onPageSizeChange($event)" (edit)="openEditModal($event)"
+        (softDelete)="openSoftDeleteDialog($event)" (restore)="openRestoreDialog($event)"
+        (hardDelete)="openHardDeleteDialog($event)" (viewAudit)="openAuditModal($event)"></app-data-table>
+
+    <!-- Create / Edit Form Modal -->
+    <app-employee-modal [isOpen]="isFormModalOpen" [employee]="selectedEmployee" [saving]="saving"
+        (close)="isFormModalOpen = false" (save)="onSaveEmployee($event)"></app-employee-modal>
+
+    <!-- JPA Audit Details Modal -->
+    <app-audit-modal [isOpen]="isAuditModalOpen" [employee]="selectedEmployee"
+        (close)="isAuditModalOpen = false"></app-audit-modal>
+
+    <!-- Confirmation Dialog -->
+    <app-confirm-dialog [isOpen]="isConfirmOpen" [type]="confirmType" [title]="confirmTitle" [message]="confirmMessage"
+        [confirmBtnText]="confirmBtnText" [loading]="confirming" (cancel)="isConfirmOpen = false"
+        (confirm)="executeConfirmAction()"></app-confirm-dialog>
+</div>

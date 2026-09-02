@@ -1,0 +1,68 @@
+<div class="register-wrapper">
+    <div class="register-card glass-card">
+        <div class="register-header">
+            <h2 class="register-title">Create Account</h2>
+            <p class="register-subtitle">Join Enterprise Staff Management</p>
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" class="form-control" formControlName="username" placeholder="e.g. JohnDoe" />
+                @if (hasError('username', 'required')) {
+                <div class="form-error">Username is required.</div>
+                }
+                @if (hasError('username', 'minlength')) {
+                <div class="form-error">Username must contain at least 3 characters.</div>
+                }
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-control" formControlName="email" placeholder="example@gmail.com" />
+                @if (hasError('email', 'required')) {
+                <div class="form-error">Email address is required.</div>
+                }
+                @if (hasError('email', 'email')) {
+                <div class="form-error">Please enter a valid email address.</div>
+                }
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" formControlName="password" placeholder="••••••••" />
+                @if (hasError('password', 'required')) {
+                <div class="form-error">Password is required.</div>
+                }
+                @if (hasError('password', 'minlength')) {
+                <div class="form-error">Password must contain at least 6 characters.</div>
+                }
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Select System Role</label>
+                <select class="form-select" formControlName="role">
+                    <option value="EMPLOYEE">EMPLOYEE (Read-Only Directory Access)</option>
+                    <!-- <option value="MANAGER">MANAGER (Create & Soft Delete Access)</option> -->
+                    <option value="ADMIN">ADMIN (Full System Administration)</option>
+                </select>
+                @if (hasError('role', 'required')) {
+                <div class="form-error">Role selection is required.</div>
+                }
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid || loading">
+                @if (loading) {
+                Registering Account...
+                } @else {
+                Create Account ➔
+                }
+            </button>
+        </form>
+
+        <div class="auth-switch">
+            <span>Already have an account?</span>
+            <a routerLink="/login" class="switch-link">Sign In</a>
+        </div>
+    </div>
+</div>

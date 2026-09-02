@@ -1,0 +1,40 @@
+<header class="navbar-header">
+    <div class="navbar-brand">
+        @if (authService.isAuthenticated()) {
+        <button class="btn-icon sidebar-toggle-btn" (click)="sidebarService.toggleMobile()"
+            aria-label="Toggle Navigation Menu" title="Toggle Sidebar Menu">
+            ☰
+        </button>
+        }
+        <div class="logo-icon" routerLink="/dashboard">⚡</div>
+        <div class="brand-text" routerLink="/dashboard">
+            <span class="title">EMP</span><span class="subtitle"></span>
+        </div>
+    </div>
+
+    <div class="navbar-actions">
+
+        <!-- Theme Switcher Button -->
+        <button class="btn-icon theme-btn" (click)="themeService.toggleTheme()"
+            [title]="'Switch to ' + (themeService.theme() === 'dark' ? 'Light' : 'Dark') + ' Mode'">
+            @if (themeService.theme() === 'dark') {
+            <span>☀️</span>
+            } @else {
+            <span>🌙</span>
+            }
+        </button>
+
+        <!-- User Profile Dropdown -->
+        @if (authService.currentUser(); as user) {
+        <div class="user-profile">
+            <div class="avatar">{{ user.username.charAt(0).toUpperCase() }}</div>
+            <div class="user-info">
+                <span class="username">{{ user.username }}</span>
+            </div>
+            <button class="btn-icon logout-btn" (click)="authService.logout()" title="Logout">
+                ➔
+            </button>
+        </div>
+        }
+    </div>
+</header>

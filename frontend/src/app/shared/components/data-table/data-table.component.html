@@ -1,0 +1,151 @@
+<div class="table-container glass-card">
+    <div class="table-responsive">
+        <table class="enterprise-table">
+            <thead>
+                <tr>
+                    <th (click)="sort('id')" class="sortable">
+                        ID @if (sortBy === 'id') { {{ activeDirection === 'asc' ? '▲' : '▼' }} }
+                    </th>
+                    <th (click)="sort('firstName')" class="sortable">
+                        Name @if (sortBy === 'firstName') { {{ activeDirection === 'asc' ? '▲' : '▼' }} }
+                    </th>
+                    <th>Phone</th>
+                    <th (click)="sort('department')" class="sortable">
+                        Department @if (sortBy === 'department') { {{ activeDirection === 'asc' ? '▲' : '▼' }} }
+                    </th>
+                    <th>Designation</th>
+                    <th (click)="sort('salary')" class="sortable text-right">
+                        Salary @if (sortBy === 'salary') { {{ activeDirection === 'asc' ? '▲' : '▼' }} }
+                    </th>
+                    <th (click)="sort('dateOfJoining')" class="sortable">
+                        Joined @if (sortBy === 'dateOfJoining') { {{ activeDirection === 'asc' ? '▲' : '▼' }} }
+                    </th>
+                    <th class="text-center">Role</th>
+                    <th class="text-center">Audit</th>
+                    <th class="text-center" *appHasRole="['ROLE_ADMIN', 'ROLE_MANAGER']">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (loading) {
+                <tr>
+                    <td colspan="10" class="loading-cell">
+                        <div class="spinner"></div>
+                        <span>Loading employees from server...</span>
+                    </td>
+                </tr>
+                } @else if (!pageData || !pageData.content || pageData.content.length === 0) {
+                <tr>
+                    <td colspan="10" class="empty-cell">
+                        <div class="empty-icon">📂</div>
+                        <div class="empty-title">No employees found</div>
+                        <div class="empty-subtitle">Try adjusting your search criteria or adding a new employee.</div>
+                    </td>
+                </tr>
+                } @else {
+                @for (emp of pageData.content; track emp.id) {
+                <tr [ngClass]="{ 'row-deleted': emp.deleted }">
+                    <td class="font-mono text-bold">#{{ emp.id }}</td>
+                    <td>
+                        <div class="employee-name-box">
+                            <span class="full-name">{{ emp.firstName }} {{ emp.lastName }}</span>
+                            <span class="email-sub">{{ emp.email }}</span>
+                        </div>
+                    </td>
+                    <td class="text-muted font-mono">{{ emp.phoneNumber || '-' }}</td>
+                    <td><span class="dept-badge">{{ emp.department || 'N/A' }}</span></td>
+                    <td class="text-muted">{{ emp.designation || 'N/A' }}</td>
+                    <td class="text-right font-mono font-600">
+                        {{ emp.salary | currency:'USD':'symbol':'1.0-0' }}
+                    </td>
+                    <td class="text-muted">
+                        {{ emp.dateOfJoining | date:'mediumDate' }}
+                    </td>
+                    <td class="text-center">
+                        <span class="badge badge-role">{{ emp.role || 'USER' }}</span>
+                    </td>
+
+                    <!-- JPA Audit Modal Trigger Button -->
+                    <td class="text-center">
+                        <button class="btn btn-outline btn-sm audit-btn" (click)="viewAudit.emit(emp)"
+                            title="Inspect JPA Audit Metadata">
+                            🔍 Audit
+                        </button>
+                    </td>
+
+                    <!-- Action Buttons (RBAC Gated) -->
+                    <td class="text-right" *appHasRole="['ROLE_ADMIN', 'ROLE_MANAGER']">
+                        <div class="action-buttons">
+
+                            <!-- <button class="btn btn-success btn-sm" (click)="restore.emit(emp)"
+                                title="Restore Soft Deleted Record">
+                                ↩ Restore
+                            </button>
+                            <button class="btn btn-danger btn-sm" (click)="hardDelete.emit(emp)"
+                                title="Permanently Delete Record (Admin Only)">
+                                🗑️ Purge
+                            </button> -->
+
+                            <button class="btn btn-outline btn-sm" (click)="edit.emit(emp)" title="Edit Employee DTO">
+                                ✏️ Edit
+                            </button>
+                            <button class="btn btn-danger btn-sm" (click)="softDelete.emit(emp)"
+                                title="Delete Employee">
+                                🗑️ Delete
+                            </button>
+
+                        </div>
+                    </td>
+                </tr>
+                }
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Server-Side Pagination Bar -->
+    @if (pageData && pageData.content && pageData.content.length > 0) {
+    <div class="pagination-bar">
+        <div class="pagination-summary">
+            Showing
+            <strong>{{ pageData.pageNumber * pageData.pageSize + 1 }}</strong>
+            to
+            <strong>{{ mathMin((pageData.pageNumber + 1) * pageData.pageSize, pageData.totalElements) }}</strong>
+            of
+            <strong>{{ pageData.totalElements }}</strong> records
+        </div>
+
+        <div class="pagination-controls">
+            <div class="page-size-selector">
+                <span>Rows per page:</span>
+                <select class="form-select size-select" [value]="pageData.pageSize" (change)="onPageSizeChange($event)">
+                    <option [value]="5">5</option>
+                    <option [value]="10">10</option>
+                    <option [value]="25">25</option>
+                    <option [value]="50">50</option>
+                </select>
+            </div>
+
+            <div class="pager-buttons">
+                <button class="btn btn-outline btn-sm" [disabled]="pageData.first" (click)="changePage(0)">
+                    «
+                </button>
+                <button class="btn btn-outline btn-sm" [disabled]="pageData.first"
+                    (click)="changePage(pageData.pageNumber - 1)">
+                    ‹ Prev
+                </button>
+                <span class="page-indicator">
+                    Page <strong>{{ pageData.pageNumber + 1 }}</strong> of {{ pageData.totalPages }}
+                </span>
+                <button class="btn btn-outline btn-sm" [disabled]="pageData.last"
+                    (click)="changePage(pageData.pageNumber + 1)">
+                    Next ›
+                </button>
+                <button class="btn btn-outline btn-sm" [disabled]="pageData.last"
+                    (click)="changePage(pageData.totalPages - 1)">
+                    »
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+</div>

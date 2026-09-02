@@ -1,0 +1,140 @@
+@if (isOpen) {
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3 class="modal-title">
+                {{ isEditMode ? 'Edit Employee' : 'Create New Employee' }}
+            </h3>
+            <button class="btn-icon" (click)="close.emit()">✕</button>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="modal-body">
+                <div class="form-row">
+                    <!-- First Name -->
+                    <div class="form-group flex-1">
+                        <label class="form-label">First Name *</label>
+                        <input type="text" class="form-control" formControlName="firstName" placeholder="e.g. John" />
+                        @if (hasError('firstName', 'required')) {
+                        <div class="form-error">First name is required.</div>
+                        }
+                        @if (hasError('firstName', 'maxlength')) {
+                        <div class="form-error">First name cannot exceed 50 characters.</div>
+                        }
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="form-group flex-1">
+                        <label class="form-label">Last Name *</label>
+                        <input type="text" class="form-control" formControlName="lastName" placeholder="e.g. Doe" />
+                        @if (hasError('lastName', 'required')) {
+                        <div class="form-error">Last name is required.</div>
+                        }
+                        @if (hasError('lastName', 'maxlength')) {
+                        <div class="form-error">Last name cannot exceed 50 characters.</div>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <!-- Email -->
+                    <div class="form-group flex-1">
+                        <label class="form-label">Corporate Email *</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="john.doe@enterprise.com" />
+                        @if (hasError('email', 'required')) {
+                        <div class="form-error">Email is required.</div>
+                        }
+                        @if (hasError('email', 'email')) {
+                        <div class="form-error">Please enter a valid email.</div>
+                        }
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-group flex-1">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="text" class="form-control" formControlName="phoneNumber" placeholder="9854589004" />
+                        @if (hasError('phoneNumber', 'required')) {
+                        <div class="form-error">Phone number is required.</div>
+                        }
+                        @if (hasError('phoneNumber', 'pattern')) {
+                        <div class="form-error">Phone number must contain exactly 10 digits.</div>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <!-- Department -->
+                    <div class="form-group flex-1">
+                        <label class="form-label">Department *</label>
+                        <select class="form-select" formControlName="department">
+                            @for (dept of departments; track dept) {
+                            <option [value]="dept">{{ dept }}</option>
+                            }
+                        </select>
+                        @if (hasError('department', 'required')) {
+                        <div class="form-error">Department is required.</div>
+                        }
+                    </div>
+
+                    <!-- Designation -->
+                    <div class="form-group flex-1">
+                        <label class="form-label">Designation *</label>
+                        <input type="text" class="form-control" formControlName="designation" placeholder="e.g. Software Engineer" />
+                        @if (hasError('designation', 'required')) {
+                        <div class="form-error">Designation is required.</div>
+                        }
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <!-- Salary -->
+                    <div class="form-group flex-1">
+                        <label class="form-label">Salary *</label>
+                        <input type="number" class="form-control" formControlName="salary" placeholder="e.g. 70000" />
+                        @if (hasError('salary', 'required')) {
+                        <div class="form-error">Salary is required.</div>
+                        }
+                        @if (hasError('salary', 'min')) {
+                        <div class="form-error">Salary must be greater than zero.</div>
+                        }
+                    </div>
+
+                    <!-- Date of Joining -->
+                    <div class="form-group flex-1">
+                        <label class="form-label">Date of Joining *</label>
+                        <input type="date" class="form-control" formControlName="dateOfJoining" />
+                        @if (hasError('dateOfJoining', 'required')) {
+                        <div class="form-error">Date of joining is required.</div>
+                        }
+                    </div>
+                </div>
+
+                @if (isEditMode) {
+                <div class="form-row">
+                    <div class="form-group flex-1">
+                        <label class="form-label">Status</label>
+                        <select class="form-select" formControlName="active">
+                            <option [ngValue]="true">Active</option>
+                            <option [ngValue]="false">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                }
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="close.emit()">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-primary" [disabled]="form.invalid || saving">
+                    @if (saving) {
+                    Saving...
+                    } @else {
+                    {{ isEditMode ? 'Update Employee' : 'Create Employee' }}
+                    }
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+}

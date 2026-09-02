@@ -1,0 +1,15 @@
+<app-toast-container></app-toast-container>
+
+@if (authService.isAuthenticated()) {
+  <div class="app-layout">
+    <app-navbar></app-navbar>
+    <div class="app-body">
+      <app-sidebar></app-sidebar>
+      <main class="main-content">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
+} @else {
+  <router-outlet></router-outlet>
+}
