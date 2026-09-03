@@ -4,6 +4,7 @@ export const environment = {
     apiUrl: "",
     api: {
         "login": "/api/v1/auth/login",
+        "logout": "/api/v1/auth/logout",
         "register": "/api/v1/auth/register",
         "refresh": "/api/v1/auth/refresh",
         "employees": "/api/v1/employees"

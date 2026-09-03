@@ -27,7 +27,9 @@ GitHub
 Maven
 npm
 Visual Studio Code / IntelliJ IDEA
+
 ## Project Structure
+
 employee-management/
 │
 ├── frontend/

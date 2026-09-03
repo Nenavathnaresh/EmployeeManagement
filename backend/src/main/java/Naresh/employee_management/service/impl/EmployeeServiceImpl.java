@@ -14,6 +14,9 @@ import Naresh.employee_management.service.EmployeeService;
 import Naresh.employee_management.specification.EmployeeSpecification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -79,7 +82,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional(readOnly = true)
     public PageResponse<EmployeeResponse> getAllEmployees(EmployeeSearchRequest request){
-
+        logger.info("Fetching all employees");
 //        Specification<Employee> specification = Specification.where(null);
 
             Specification<Employee> specification = Specification.where(EmployeeSpecification.isNotDeleted());
@@ -160,7 +163,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional(readOnly = true)
+    @Cacheable(value = "employees", key = "#id")
     public EmployeeResponse getEmployeeById(Long id) {
+        logger.info("Fetching employee with id: {}", id);
 
         Employee employee = getEmployeeOrThrow(id);
 //        Employee employee = findEmployeeById(id);
@@ -170,6 +175,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
+    @CachePut(value = "employees", key = "#id")
     public EmployeeResponse updateEmployee(Long id, UpdateEmployeeRequest request) {
         logger.info("Updating employee {}",id);
         Employee employee = getEmployeeOrThrow(id);
@@ -189,12 +195,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         Employee updatedEmployee =
                 employeeRepository.save(employee);
-
+        logger.info("Employee updated successfully with id: {}", id);
         return employeeMapper.toResponse(updatedEmployee);
     }
 
     @Override
     @Transactional
+    @CacheEvict(value = "employees", key = "#id")
     public void deleteEmployee(Long id) {
         logger.info("Deleting employee {}", id);
 
@@ -205,6 +212,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         employee.setDeleted(true);
         employeeRepository.save(employee);
+        logger.info(
+                "Employee deleted successfully with id: {}",
+                id
+        );
 //        employeeRepository.delete(employee);
     }
 

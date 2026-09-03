@@ -1,5 +1,7 @@
 package Naresh.employee_management.security.config;
 
+import Naresh.employee_management.logging.MdcLoggingFilter;
+import Naresh.employee_management.logging.RequestLoggingFilter;
 import Naresh.employee_management.security.filter.JwtAuthenticationFilter;
 import Naresh.employee_management.security.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
@@ -23,19 +25,26 @@ public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
     private final PasswordEncoder passwordEncoder;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final RequestLoggingFilter requestLoggingFilter;
+    private final MdcLoggingFilter mdcLoggingFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/api/v1/auth/**")
-                        .permitAll()
+                                "/api/v1/auth/login",
+                                "/api/v1/auth/register").permitAll()
+                        .requestMatchers(  "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**").permitAll()
                         .anyRequest()
                         .authenticated())
                 .authenticationProvider(authenticationProvider())
 //                .httpBasic(Customizer.withDefaults())
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(mdcLoggingFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(requestLoggingFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
 
     }

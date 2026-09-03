@@ -2,6 +2,7 @@ package Naresh.employee_management.security.filter;
 
 import Naresh.employee_management.security.jwt.JwtService;
 import Naresh.employee_management.security.service.CustomUserDetailsService;
+import Naresh.employee_management.security.service.TokenBlacklistService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final CustomUserDetailsService userDetailsService;
+    private final TokenBlacklistService tokenBlacklistService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -31,6 +33,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
         String jwtToken = authHeader.substring(7);
+        if(tokenBlacklistService.isTokenBlacklisted(jwtToken)){
+            filterChain.doFilter(request,response);
+            return;
+        }
         String username = jwtService.extractUsername(jwtToken);
 
       if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){

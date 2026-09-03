@@ -19,6 +19,10 @@ export class AuthService {
     return environment.api?.login || '/api/v1/auth/login';
   }
 
+  private get logoutUrl(): string {
+    return environment.api?.logout || '/api/v1/auth/logout';
+  }
+
   // Reactive state management using Angular Signals
   currentUser = signal<UserSession | null>(this.getStoredUser());
   isMockMode = signal<boolean>(false);
@@ -99,11 +103,19 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
-    localStorage.removeItem(this.USER_KEY);
-    this.currentUser.set(null);
-    this.notificationService.showInfo('Logged Out', 'Your session has ended successfully.');
-    this.router.navigate(['/login']);
+    this.http.post(this.logoutUrl, {}).subscribe((res: any) => {
+      if (res && res.success) {
+        localStorage.removeItem(this.TOKEN_KEY);
+        localStorage.removeItem(this.USER_KEY);
+        this.currentUser.set(null);
+        this.notificationService.showInfo('Logged Out', 'Your session has ended successfully.');
+        this.router.navigate(['/login']);
+      }
+
+    }, (err) => {
+      console.error("API Call Error", err);
+    });
+
   }
 
   getToken(): string | null {

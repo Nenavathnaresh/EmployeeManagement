@@ -1,0 +1,224 @@
+2026-09-04 00:10:29.939 INFO  [requestId=] [user=] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-04 00:10:30.066 INFO  [requestId=] [user=] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-09-04 00:10:30.113 INFO  [requestId=] [user=] [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-04 00:10:30.189 INFO  [requestId=] [user=] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-09-04 00:10:30.201 INFO  [requestId=] [user=] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-09-04 00:10:34.197 INFO  [requestId=] [user=] [restartedMain] N.e.EmployeeManagementApplication - Starting EmployeeManagementApplication using Java 21.0.12.1 with PID 6048 (D:\JAVA\employee-management\backend\target\classes started by naresh in D:\JAVA\employee-management\backend)
+2026-09-04 00:10:34.199 INFO  [requestId=] [user=] [restartedMain] N.e.EmployeeManagementApplication - The following 1 profile is active: "local"
+2026-09-04 00:10:34.278 INFO  [requestId=] [user=] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-04 00:10:34.279 INFO  [requestId=] [user=] [restartedMain] o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-04 00:10:35.490 INFO  [requestId=] [user=] [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-04 00:10:35.582 INFO  [requestId=] [user=] [restartedMain] o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 2 JPA repository interfaces.
+2026-09-04 00:10:36.568 INFO  [requestId=] [user=] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-09-04 00:10:36.586 INFO  [requestId=] [user=] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-04 00:10:36.589 INFO  [requestId=] [user=] [restartedMain] o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-09-04 00:10:36.589 INFO  [requestId=] [user=] [restartedMain] o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-09-04 00:10:36.653 INFO  [requestId=] [user=] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-09-04 00:10:36.654 INFO  [requestId=] [user=] [restartedMain] o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2375 ms
+2026-09-04 00:10:37.332 INFO  [requestId=] [user=] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-04 00:10:37.367 INFO  [requestId=] [user=] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-09-04 00:10:37.615 INFO  [requestId=] [user=] [restartedMain] com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@19b00e68
+2026-09-04 00:10:37.616 INFO  [requestId=] [user=] [restartedMain] com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-09-04 00:10:37.685 WARN  [requestId=] [user=] [restartedMain] org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-09-04 00:10:38.810 INFO  [requestId=] [user=] [restartedMain] o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-04 00:10:39.281 INFO  [requestId=] [user=] [restartedMain] o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-09-04 00:10:39.283 WARN  [requestId=] [user=] [restartedMain] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-09-04 00:10:39.527 WARN  [requestId=] [user=] [restartedMain] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-09-04 00:10:40.265 INFO  [requestId=] [user=] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-09-04 00:10:40.283 INFO  [requestId=] [user=] [restartedMain] o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-09-04 00:10:40.311 INFO  [requestId=] [user=] [restartedMain] o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-09-04 00:10:40.322 INFO  [requestId=] [user=] [restartedMain] N.e.EmployeeManagementApplication - Started EmployeeManagementApplication in 6.83 seconds (process running for 7.834)
+2026-09-04 00:12:02.064 INFO  [requestId=] [user=] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-04 00:12:02.065 INFO  [requestId=] [user=] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-09-04 00:12:02.067 INFO  [requestId=] [user=] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-09-04 00:12:03.994 DEBUG [requestId=c727062b-3054-492f-86a5-5524af5cc2c4] [user=] [http-nio-8080-exec-1] org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-09-04 00:12:04.186 INFO  [requestId=c727062b-3054-492f-86a5-5524af5cc2c4] [user=naresh@gmail.com] [http-nio-8080-exec-1] N.e.logging.RequestLoggingFilter - Incoming Request - Method: GET, URI: /api/v1/employees
+2026-09-04 00:12:04.573 INFO  [requestId=c727062b-3054-492f-86a5-5524af5cc2c4] [user=naresh@gmail.com] [http-nio-8080-exec-1] N.e.service.impl.EmployeeServiceImpl - Fetching all employees
+2026-09-04 00:12:04.700 DEBUG [requestId=c727062b-3054-492f-86a5-5524af5cc2c4] [user=naresh@gmail.com] [http-nio-8080-exec-1] org.hibernate.SQL - 
+    select
+        e1_0.id,
+        e1_0.active,
+        e1_0.created_at,
+        e1_0.created_by,
+        e1_0.date_of_joining,
+        e1_0.deleted,
+        e1_0.department,
+        e1_0.designation,
+        e1_0.email,
+        e1_0.first_name,
+        e1_0.last_name,
+        e1_0.phone_number,
+        e1_0.salary,
+        e1_0.updated_at,
+        e1_0.updated_by 
+    from
+        employees e1_0 
+    where
+        not(e1_0.deleted) 
+    order by
+        e1_0.id 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-09-04 00:12:05.134 INFO  [requestId=c727062b-3054-492f-86a5-5524af5cc2c4] [user=naresh@gmail.com] [http-nio-8080-exec-1] N.e.logging.RequestLoggingFilter - Outgoing Response - Method: GET, URI: /api/v1/employees, Status: 200, Duration: 949 ms
+2026-09-04 00:12:25.574 DEBUG [requestId=081dd12e-c530-438f-b4d2-bd98e1723c73] [user=] [http-nio-8080-exec-4] org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-09-04 00:12:25.586 INFO  [requestId=081dd12e-c530-438f-b4d2-bd98e1723c73] [user=naresh@gmail.com] [http-nio-8080-exec-4] N.e.logging.RequestLoggingFilter - Incoming Request - Method: GET, URI: /api/v1/employees
+2026-09-04 00:12:25.588 INFO  [requestId=081dd12e-c530-438f-b4d2-bd98e1723c73] [user=naresh@gmail.com] [http-nio-8080-exec-4] N.e.service.impl.EmployeeServiceImpl - Fetching all employees
+2026-09-04 00:12:25.590 DEBUG [requestId=081dd12e-c530-438f-b4d2-bd98e1723c73] [user=naresh@gmail.com] [http-nio-8080-exec-4] org.hibernate.SQL - 
+    select
+        e1_0.id,
+        e1_0.active,
+        e1_0.created_at,
+        e1_0.created_by,
+        e1_0.date_of_joining,
+        e1_0.deleted,
+        e1_0.department,
+        e1_0.designation,
+        e1_0.email,
+        e1_0.first_name,
+        e1_0.last_name,
+        e1_0.phone_number,
+        e1_0.salary,
+        e1_0.updated_at,
+        e1_0.updated_by 
+    from
+        employees e1_0 
+    where
+        not(e1_0.deleted) 
+    order by
+        e1_0.id 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-09-04 00:12:25.605 DEBUG [requestId=081dd12e-c530-438f-b4d2-bd98e1723c73] [user=naresh@gmail.com] [http-nio-8080-exec-4] org.hibernate.SQL - 
+    select
+        count(e1_0.id) 
+    from
+        employees e1_0 
+    where
+        not(e1_0.deleted)
+2026-09-04 00:12:25.612 INFO  [requestId=081dd12e-c530-438f-b4d2-bd98e1723c73] [user=naresh@gmail.com] [http-nio-8080-exec-4] N.e.logging.RequestLoggingFilter - Outgoing Response - Method: GET, URI: /api/v1/employees, Status: 200, Duration: 27 ms
+2026-09-04 00:12:59.602 DEBUG [requestId=9d249e82-53ab-4483-8a55-49d38f922860] [user=] [http-nio-8080-exec-3] org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-09-04 00:12:59.608 INFO  [requestId=9d249e82-53ab-4483-8a55-49d38f922860] [user=naresh@gmail.com] [http-nio-8080-exec-3] N.e.logging.RequestLoggingFilter - Incoming Request - Method: GET, URI: /api/v1/employees
+2026-09-04 00:12:59.618 INFO  [requestId=9d249e82-53ab-4483-8a55-49d38f922860] [user=naresh@gmail.com] [http-nio-8080-exec-3] N.e.service.impl.EmployeeServiceImpl - Fetching all employees
+2026-09-04 00:12:59.623 DEBUG [requestId=9d249e82-53ab-4483-8a55-49d38f922860] [user=naresh@gmail.com] [http-nio-8080-exec-3] org.hibernate.SQL - 
+    select
+        e1_0.id,
+        e1_0.active,
+        e1_0.created_at,
+        e1_0.created_by,
+        e1_0.date_of_joining,
+        e1_0.deleted,
+        e1_0.department,
+        e1_0.designation,
+        e1_0.email,
+        e1_0.first_name,
+        e1_0.last_name,
+        e1_0.phone_number,
+        e1_0.salary,
+        e1_0.updated_at,
+        e1_0.updated_by 
+    from
+        employees e1_0 
+    where
+        not(e1_0.deleted) 
+    order by
+        e1_0.id 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-09-04 00:12:59.643 INFO  [requestId=9d249e82-53ab-4483-8a55-49d38f922860] [user=naresh@gmail.com] [http-nio-8080-exec-3] N.e.logging.RequestLoggingFilter - Outgoing Response - Method: GET, URI: /api/v1/employees, Status: 200, Duration: 35 ms
+2026-09-04 00:14:02.741 DEBUG [requestId=32d27fa5-a91a-412e-bee2-aaa0bd9acb0d] [user=] [http-nio-8080-exec-5] org.hibernate.SQL - 
+    select
+        u1_0.id,
+        u1_0.created_at,
+        u1_0.created_by,
+        u1_0.email,
+        u1_0.enabled,
+        u1_0.password,
+        u1_0.role,
+        u1_0.updated_at,
+        u1_0.updated_by,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2026-09-04 00:14:02.751 INFO  [requestId=32d27fa5-a91a-412e-bee2-aaa0bd9acb0d] [user=naresh@gmail.com] [http-nio-8080-exec-5] N.e.logging.RequestLoggingFilter - Incoming Request - Method: GET, URI: /api/v1/employees
+2026-09-04 00:14:02.754 INFO  [requestId=32d27fa5-a91a-412e-bee2-aaa0bd9acb0d] [user=naresh@gmail.com] [http-nio-8080-exec-5] N.e.service.impl.EmployeeServiceImpl - Fetching all employees
+2026-09-04 00:14:02.757 DEBUG [requestId=32d27fa5-a91a-412e-bee2-aaa0bd9acb0d] [user=naresh@gmail.com] [http-nio-8080-exec-5] org.hibernate.SQL - 
+    select
+        e1_0.id,
+        e1_0.active,
+        e1_0.created_at,
+        e1_0.created_by,
+        e1_0.date_of_joining,
+        e1_0.deleted,
+        e1_0.department,
+        e1_0.designation,
+        e1_0.email,
+        e1_0.first_name,
+        e1_0.last_name,
+        e1_0.phone_number,
+        e1_0.salary,
+        e1_0.updated_at,
+        e1_0.updated_by 
+    from
+        employees e1_0 
+    where
+        not(e1_0.deleted) 
+    order by
+        e1_0.id 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2026-09-04 00:14:02.774 INFO  [requestId=32d27fa5-a91a-412e-bee2-aaa0bd9acb0d] [user=naresh@gmail.com] [http-nio-8080-exec-5] N.e.logging.RequestLoggingFilter - Outgoing Response - Method: GET, URI: /api/v1/employees, Status: 200, Duration: 23 ms

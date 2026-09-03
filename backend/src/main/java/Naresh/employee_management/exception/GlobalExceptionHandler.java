@@ -2,6 +2,7 @@ package Naresh.employee_management.exception;
 
 import Naresh.employee_management.common.ApiResponse;
 import Naresh.employee_management.common.ApiResponseUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
+@Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -59,6 +61,7 @@ public class GlobalExceptionHandler {
                 .errors(Collections.emptyList())
                 .timestamp(LocalDateTime.now())
                 .build();
+        log.warn("Duplicate employee email: {}", ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
@@ -104,6 +107,7 @@ public class GlobalExceptionHandler {
                 .errors(errors)
                 .timestamp(LocalDateTime.now())
                 .build();
+        log.warn("Validation failed for request");
         return ResponseEntity.badRequest().body(response);
     }
 
@@ -116,6 +120,20 @@ public class GlobalExceptionHandler {
                 .errors(List.of(ex.getMessage()))
                 .timestamp((LocalDateTime.now()))
                 .build();
+        log.error("Unexpected application error", ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    }
+
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public ResponseEntity<ApiResponse<Object>> handleEmployeeNotFound(
+            EmployeeNotFoundException ex) {
+
+        ApiResponse<Object> response = ApiResponse.builder()
+                        .success(false)
+                                .message(ex.getMessage())
+                                        .data(null).errors(List.of(ex.getMessage())).timestamp(LocalDateTime.now()).build();
+
+        log.warn("Employee not found: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
 }

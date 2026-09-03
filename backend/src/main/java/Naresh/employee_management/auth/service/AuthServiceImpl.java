@@ -11,6 +11,7 @@ import Naresh.employee_management.exception.InvalidCredentialsException;
 import Naresh.employee_management.exception.UsernameAlreadyExistsException;
 import Naresh.employee_management.repository.UserRepository;
 import Naresh.employee_management.security.jwt.JwtService;
+import Naresh.employee_management.security.service.TokenBlacklistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,6 +28,7 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
+    private final TokenBlacklistService tokenBlacklistService;
 
     @Override
     @Transactional(readOnly = true)
@@ -70,5 +72,10 @@ public class AuthServiceImpl implements AuthService {
         User savedUser = userRepository.save(user);
 
         return userMapper.toResponse(savedUser);
+    }
+
+    @Override
+    public void logout(String token) {
+        tokenBlacklistService.blacklistToken(token);
     }
 }
