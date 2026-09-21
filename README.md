@@ -55,6 +55,21 @@ Display employee list
 REST API integration between Angular and Spring Boot
 Database persistence using Spring Data JPA
 Responsive frontend interface
+
+- JWT Authentication
+- Role-Based Access Control
+- Employee CRUD
+- Pagination
+- Sorting
+- Dynamic filtering
+- Soft delete
+- Global exception handling
+- DTO mapping
+  
+  ## Architecture
+
+Angular → REST API → Service → Repository → PostgreSQL
+
 ## Prerequisites
 
 Before running the application, make sure you have installed:
