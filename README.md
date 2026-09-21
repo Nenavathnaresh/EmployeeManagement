@@ -66,7 +66,7 @@ Responsive frontend interface
 - Global exception handling
 - DTO mapping
   
-  ## Architecture
+## Architecture
 
 Angular → REST API → Service → Repository → PostgreSQL
 
@@ -83,7 +83,7 @@ MySQL
 Git
 ## Getting Started
 ## 1. Clone the Repository
-git clone https://github.com/YOUR_USERNAME/employee-management.git
+git clone https://github.com/Nenavathnaresh/employee-management.git
 
 
 Navigate into the project:
